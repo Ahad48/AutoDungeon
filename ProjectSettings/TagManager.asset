@@ -17,8 +17,8 @@ TagManager:
   - 
   - Wall
   - Room
-  - 
-  - 
+  - Characters
+  - SpawnPoints
   - 
   - 
   - 
@@ -45,4 +45,7 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Characters
+    uniqueID: 418485313
     locked: 0
