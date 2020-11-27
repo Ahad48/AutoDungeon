@@ -35,12 +35,12 @@ public class PlayerMovement : MonoBehaviour
         Move();
     }
 
-    private void Flip()
+    private void Flip(Transform m_object)
     {
         // Switch the way the player is labelled as facing.
         m_FacingRight = !m_FacingRight;
 
-        transform.Rotate(0f, 180f, 0f);
+        m_object.transform.Rotate(0f, 180f, 0f);
     }
 
     void MoveCharacter()
@@ -78,24 +78,43 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateState()
     {
+        Transform staff = transform.GetChild(0);
+
         if (moveHorizontal > 0)
         {
             spriteRenderer.sprite = right;
+            spriteRenderer.sortingOrder = 0;
         }
 
         else if (moveHorizontal < 0)
         {
             spriteRenderer.sprite = left;
+            spriteRenderer.sortingOrder = 2;
         }
 
         else if (moveVertical > 0)
         {
             spriteRenderer.sprite = back;
+            spriteRenderer.sortingOrder = 2;
         }
 
         else if (moveVertical < 0)
         {
             spriteRenderer.sprite = front;
+            spriteRenderer.sortingOrder = 0;
+        }
+
+        // If the input is moving the player right and the player is facing left...
+        if ((moveHorizontal > 0 && !m_FacingRight) || (moveVertical > 0 && !m_FacingRight))
+        {
+            // ... flip the player.
+            Flip(staff);
+        }
+        // Otherwise if the input is moving the player left and the player is facing right...
+        else if ((moveHorizontal < 0 && m_FacingRight) || (moveVertical < 0 && m_FacingRight))
+        {
+            // ... flip the player.
+            Flip(staff);
         }
     }
 
