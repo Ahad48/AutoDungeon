@@ -5,9 +5,9 @@ using UnityEngine;
 public class RoomManager : MonoBehaviour
 {
     [SerializeField] bool instantiateHome = true;
-    [SerializeField] GameObject boss;
-    [SerializeField] GameObject player;
-    [SerializeField] GameObject center;
+    [SerializeField] private GameObject boss = null;
+    [SerializeField] private GameObject home = null;
+    [SerializeField] private GameObject center = null;
 
     public GameObject[] topDoorRooms;
     public GameObject[] bottomDoorRooms;
@@ -27,7 +27,7 @@ public class RoomManager : MonoBehaviour
     {
         if(instantiateHome)
             RandomHomeRoom();
-        Instantiate(player, transform.position, Quaternion.identity);
+        Instantiate(home, transform.position, Quaternion.identity);
         Instantiate(center, transform.position, Quaternion.identity);
     }
 

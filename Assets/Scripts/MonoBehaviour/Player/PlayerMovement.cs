@@ -5,11 +5,21 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;
-    [SerializeField] float movementSpeed = 40;
-    [SerializeField] Sprite front;
-    [SerializeField] Sprite back;
-    [SerializeField] Sprite right;
-    [SerializeField] Sprite left;
+
+    [SerializeField]
+    private float movementSpeed = 40;
+
+    [SerializeField]
+    private Sprite front = null;
+
+    [SerializeField]
+    private Sprite back = null;
+
+    [SerializeField]
+    private Sprite right = null;
+
+    [SerializeField]
+    private Sprite left = null;
 
     private Rigidbody2D m_Rigidbody2D;
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.

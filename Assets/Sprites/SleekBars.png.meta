@@ -4,13 +4,13 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: -9219537292396255111
-    second: SleekBars_0
+    second: Background
   - first:
       213: -1334926847936292013
-    second: SleekBars_1
+    second: Health
   - first:
       213: -6755128112959392031
-    second: SleekBars_2
+    second: Mana
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -132,7 +132,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SleekBars_0
+      name: Background
       rect:
         serializedVersion: 2
         x: 0
@@ -140,7 +140,7 @@ TextureImporter:
         width: 128
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -153,7 +153,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SleekBars_1
+      name: Health
       rect:
         serializedVersion: 2
         x: 0
@@ -161,7 +161,7 @@ TextureImporter:
         width: 128
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -174,7 +174,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SleekBars_2
+      name: Mana
       rect:
         serializedVersion: 2
         x: 0
@@ -182,7 +182,7 @@ TextureImporter:
         width: 128
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
