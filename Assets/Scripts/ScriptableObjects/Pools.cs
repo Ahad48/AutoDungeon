@@ -8,11 +8,24 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Pool")]
 public class Pools : ScriptableObject
 {
-    public float value;
+    [SerializeField]
+    float value;
+    public float Value
+    {
+        get { return value; }
+        set { this.value = value; }
+    }
+
     public enum poolType
     {
         health,
         mana
     }
-    public poolType itemPoolType;
+
+    [SerializeField]
+    poolType itemPoolType = poolType.health;
+    public poolType ItemPoolType
+    {
+        get { return itemPoolType; }
+    }
 }

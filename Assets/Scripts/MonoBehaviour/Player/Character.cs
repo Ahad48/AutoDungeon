@@ -10,19 +10,40 @@ public abstract class Character : MonoBehaviour
     // The maximum hit points of a character
     [SerializeField]
     private float maxHitPoints = 0.0f;
+    #region maxhitpoints get
     public float MaxHitPoints
     {
         get { return maxHitPoints; }
-        set { maxHitPoints = value; }
     }
+    #endregion
+
+    [SerializeField]
+    private float maxManaPoints = 0.0f;
+    #region maxmanapoints get
+    public float MaxManaPoints
+    {
+        get { return maxManaPoints; }
+    }
+    #endregion
 
     // The Hitpoints that the chracter starts with
-    private float startingHitPoints;
+    [SerializeField]
+    private float startingHitPoints = 0.0f;
+    #region starting hitpoints
     public float StartingHitPoints
     {
         get { return startingHitPoints; }
-        set { startingHitPoints = value; }
     }
+    #endregion
+
+    [SerializeField]
+    private float startingManaPoints = 0.0f;
+    #region staring manpoints get
+    public float StartingManaPoints
+    {
+        get { return startingManaPoints; }
+    }
+    #endregion
 
     // Kill the character
     public virtual void KillCharacter()
