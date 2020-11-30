@@ -23,34 +23,37 @@ public class Player : Character
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        bool shouldDisappear = false;
-        Item hitObject = collision.GetComponent<Consumables>().Item;
-
-        if(hitObject.Type == Item.itemType.coin)
+        if (collision.CompareTag("Item"))
         {
-            print("Coin Collected");
-            shouldDisappear = true;
-        }
+            print("Item");
+            bool shouldDisappear = false;
+            Item hitObject = collision.GetComponent<Consumables>().Item;
 
-        else if(hitObject.Type == Item.itemType.heart)
-        {
-            shouldDisappear = AdjustHitPoints(hitObject.Quantity);
-            //print(health.Value);
-        }
+            if(hitObject.Type == Item.itemType.coin)
+            {
+                print("Coin Collected");
+                shouldDisappear = true;
+            }
 
-        else if (hitObject.Type == Item.itemType.mana)
-        {
-            shouldDisappear = AdjustManaPoints(hitObject.Quantity);
-            //print(mana.Value);
-        }
+            else if(hitObject.Type == Item.itemType.heart)
+            {
+                shouldDisappear = AdjustHitPoints(hitObject.Quantity);
+                //print(health.Value);
+            }
 
-        if(shouldDisappear)
-            collision.gameObject.SetActive(false);
+            else if (hitObject.Type == Item.itemType.mana)
+            {
+                shouldDisappear = AdjustManaPoints(hitObject.Quantity);
+                //print(mana.Value);
+            }
+
+            if(shouldDisappear)
+                collision.gameObject.SetActive(false);
+        }
     }
 
     public override void ResetCharacter()
     {
-        print("ehhhhh");
         healthBar.Character = this;
         manaBar.Character = this;
     }
