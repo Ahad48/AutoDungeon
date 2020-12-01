@@ -17,6 +17,7 @@ public class Spells : ScriptableObject
     public float SpellQuantity
     {
         get { return spellQuantity; }
+        set { spellQuantity = value; }
     }
 
     [SerializeField]
@@ -26,6 +27,21 @@ public class Spells : ScriptableObject
         get { return spellDuration; }
     }
 
+    [SerializeField]
+    GameObject spellPrefab = null;
+    public GameObject SpellPrefab
+    {
+        get { return spellPrefab; }
+    }
+
+    [SerializeField]
+    float spellSpawnDistance = 0.0f;
+    public float SpellSpawnDistance
+    {
+        get { return spellSpawnDistance; }
+        set { spellSpawnDistance = value; }
+    }
+    
     public enum SpellType{
         attack,
         boost,

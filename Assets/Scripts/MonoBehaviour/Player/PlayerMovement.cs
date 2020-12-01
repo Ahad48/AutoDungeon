@@ -21,11 +21,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Sprite left = null;
 
+    [SerializeField]
+    FacingDirection direction = null;
+
     private Rigidbody2D m_Rigidbody2D;
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
     private Vector3 m_Velocity = Vector3.zero;
     float moveHorizontal;
     float moveVertical;
+
     SpriteRenderer spriteRenderer;
 
     private void Awake()
@@ -55,8 +59,18 @@ public class PlayerMovement : MonoBehaviour
 
     void MoveCharacter()
     {
-        moveHorizontal = Input.GetAxisRaw("Horizontal");
-        moveVertical = Input.GetAxisRaw("Vertical");
+        //moveHorizontal = Input.GetAxisRaw("Horizontal");
+        //moveVertical = Input.GetAxisRaw("Vertical");
+
+        if(Input.GetAxisRaw("Horizontal") !=0)
+        {
+            moveHorizontal = Input.GetAxisRaw("Horizontal");
+        }
+
+        else if (Input.GetAxisRaw("Vertical") != 0)
+        {
+            moveVertical = Input.GetAxisRaw("Vertical");
+        }
     }
 
     private void Move()
@@ -94,26 +108,35 @@ public class PlayerMovement : MonoBehaviour
         {
             spriteRenderer.sprite = right;
             spriteRenderer.sortingOrder = 0;
+            direction.CurrentlyFacing = FacingDirection.currentlyFacing.right;
         }
 
         else if (moveHorizontal < 0)
         {
             spriteRenderer.sprite = left;
             spriteRenderer.sortingOrder = 2;
+            direction.CurrentlyFacing = FacingDirection.currentlyFacing.left;
         }
 
         else if (moveVertical > 0)
         {
             spriteRenderer.sprite = back;
             spriteRenderer.sortingOrder = 2;
+            direction.CurrentlyFacing = FacingDirection.currentlyFacing.up;
         }
 
         else if (moveVertical < 0)
         {
             spriteRenderer.sprite = front;
             spriteRenderer.sortingOrder = 0;
+            direction.CurrentlyFacing = FacingDirection.currentlyFacing.down;
         }
 
+        FlipStaff(staff);
+    }
+
+    void FlipStaff(Transform staff)
+    {
         // If the input is moving the player right and the player is facing left...
         if ((moveHorizontal > 0 && !m_FacingRight) || (moveVertical > 0 && !m_FacingRight))
         {

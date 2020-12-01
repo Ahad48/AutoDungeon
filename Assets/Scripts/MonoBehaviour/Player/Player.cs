@@ -8,6 +8,17 @@ public class Player : Character
     [SerializeField] Pools mana = null;
     [SerializeField] PoolBar healthBar = null;
     [SerializeField] PoolBar manaBar = null;
+
+    public enum currentlyFacing
+    {
+        up,
+        down,
+        left,
+        right
+    }
+
+    public static currentlyFacing Facing = currentlyFacing.right;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,7 +71,28 @@ public class Player : Character
 
     public override IEnumerator DamageCharacter(int damage, float interval)
     {
-        throw new System.NotImplementedException();
+        while (true) {
+            health.Value -= damage;
+
+            if (health.Value <= float.Epsilon)
+            {
+                print("health died");
+                KillCharacter();
+                break;
+            }
+
+            if (health.Value > float.Epsilon)
+            {
+                print("wait for seconds: " + interval);
+                yield return new WaitForSeconds(interval);
+            }
+
+            else
+            {
+                print("else");
+                break;
+            }
+        }
     }
 
     bool AdjustHitPoints(float amount)

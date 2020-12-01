@@ -14,6 +14,7 @@ public class Item : ScriptableObject
     public float Quantity
     {
         get { return quantity; }
+        set { quantity = value; }
     }
     #endregion
 

@@ -15,5 +15,8 @@ MonoBehaviour:
   spellName: SpawnSpikes
   spellQuantity: 1
   spellDuration: 5
+  spellPrefab: {fileID: 5250836245979489445, guid: 61a4318265d8d4f0c9010d9dc2def39f,
+    type: 3}
+  spellSpawnDistance: 2
   type: 0
-  spellDamage: 0
+  spellDamage: 5

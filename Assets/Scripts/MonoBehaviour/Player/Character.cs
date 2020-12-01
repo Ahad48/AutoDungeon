@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public abstract class Character : MonoBehaviour
 {
+    
     // The maximum hit points of a character
     [SerializeField]
     private float maxHitPoints = 0.0f;
@@ -48,7 +49,7 @@ public abstract class Character : MonoBehaviour
     // Kill the character
     public virtual void KillCharacter()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     // Is called when the object gets enables
