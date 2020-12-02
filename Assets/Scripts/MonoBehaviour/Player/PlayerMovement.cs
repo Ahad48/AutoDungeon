@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;
+    [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f; // The movement smoothning applied to the character
 
     [SerializeField]
-    private float movementSpeed = 40;
+    private float movementSpeed = 40; // The movement speed of the character
 
+    #region Sprites based on direction
     [SerializeField]
     private Sprite front = null;
 
@@ -20,9 +21,10 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private Sprite left = null;
+    #endregion
 
     [SerializeField]
-    FacingDirection direction = null;
+    FacingDirection direction = null; // Scriptable object the direction of the character
 
     private Rigidbody2D m_Rigidbody2D;
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
@@ -40,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        MoveCharacter();
+        CharacterMovementInput();
         UpdateState();
     }
 
@@ -57,22 +59,18 @@ public class PlayerMovement : MonoBehaviour
         m_object.transform.Rotate(0f, 180f, 0f);
     }
 
-    void MoveCharacter()
+    /// <summary>
+    /// Registers the input of the character movement
+    /// </summary>
+    void CharacterMovementInput()
     {
-        //moveHorizontal = Input.GetAxisRaw("Horizontal");
-        //moveVertical = Input.GetAxisRaw("Vertical");
-
-        if(Input.GetAxisRaw("Horizontal") !=0)
-        {
-            moveHorizontal = Input.GetAxisRaw("Horizontal");
-        }
-
-        else if (Input.GetAxisRaw("Vertical") != 0)
-        {
-            moveVertical = Input.GetAxisRaw("Vertical");
-        }
+        moveHorizontal = Input.GetAxisRaw("Horizontal");
+        moveVertical = Input.GetAxisRaw("Vertical");
     }
 
+    /// <summary>
+    /// Moves the CHaracter in the direction registered by the moveCharacter function
+    /// </summary>
     private void Move()
     {
         moveHorizontal *= Time.fixedDeltaTime;
@@ -100,6 +98,9 @@ public class PlayerMovement : MonoBehaviour
         //}
     }
 
+    /// <summary>
+    /// Updates te sprite of the character based on the movement also changes the sprite order based on the direction facing
+    /// </summary>
     private void UpdateState()
     {
         Transform staff = transform.GetChild(0);
@@ -135,20 +136,28 @@ public class PlayerMovement : MonoBehaviour
         FlipStaff(staff);
     }
 
+    /// <summary>
+    /// Flips the staff based on the diction of movement
+    /// </summary>
+    /// <param name="staff"></param>
     void FlipStaff(Transform staff)
     {
         // If the input is moving the player right and the player is facing left...
-        if ((moveHorizontal > 0 && !m_FacingRight) || (moveVertical > 0 && !m_FacingRight))
+        if ((direction.CurrentlyFacing == FacingDirection.currentlyFacing.right && !m_FacingRight)
+            || direction.CurrentlyFacing== FacingDirection.currentlyFacing.up && !m_FacingRight)
         {
             // ... flip the player.
             Flip(staff);
         }
         // Otherwise if the input is moving the player left and the player is facing right...
-        else if ((moveHorizontal < 0 && m_FacingRight) || (moveVertical < 0 && m_FacingRight))
+        else if ((direction.CurrentlyFacing == FacingDirection.currentlyFacing.left && m_FacingRight)
+            || (direction.CurrentlyFacing == FacingDirection.currentlyFacing.down && m_FacingRight))
         {
             // ... flip the player.
             Flip(staff);
         }
+
+        //else if((direction.CurrentlyFacing == FacingDirection.currentlyFacing.left && m_FacingRight ))
     }
 
 }

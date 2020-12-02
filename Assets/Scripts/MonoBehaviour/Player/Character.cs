@@ -18,6 +18,7 @@ public abstract class Character : MonoBehaviour
     }
     #endregion
 
+    // The maximun mana points of a character
     [SerializeField]
     private float maxManaPoints = 0.0f;
     #region maxmanapoints get
@@ -37,6 +38,7 @@ public abstract class Character : MonoBehaviour
     }
     #endregion
 
+    // The mana points that the character starts with
     [SerializeField]
     private float startingManaPoints = 0.0f;
     #region staring manpoints get
@@ -45,6 +47,15 @@ public abstract class Character : MonoBehaviour
         get { return startingManaPoints; }
     }
     #endregion
+
+    // A enum for getting where the character is facing
+    public enum currentlyFacing
+    {
+        up,
+        down,
+        left,
+        right
+    }
 
     // Kill the character
     public virtual void KillCharacter()

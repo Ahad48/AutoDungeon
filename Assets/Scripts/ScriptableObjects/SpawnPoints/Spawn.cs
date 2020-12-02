@@ -9,6 +9,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Spawn")]
 public class Spawn : ScriptableObject
 {
+    /// <summary>
+    /// An enum of the various door location required each spwan point will have one door associated with it
+    /// </summary>
     public enum neededDoorDirection
     {
         top,

@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class RoomManager : MonoBehaviour
 {
-    [SerializeField] bool instantiateHome = true;
-    [SerializeField] private GameObject boss = null;
-    [SerializeField] private GameObject home = null;
-    [SerializeField] private GameObject center = null;
+    [SerializeField] bool instantiateHome = true; // Insitinaite a home room for testing
+    [SerializeField] private GameObject boss = null; // Boss prefab
+    [SerializeField] private GameObject home = null; // The home room prefab
+    [SerializeField] private GameObject center = null; // A center spwan point
 
     public GameObject[] topDoorRooms;
     public GameObject[] bottomDoorRooms;
     public GameObject[] leftDoorRooms;
     public GameObject[] rightDoorRooms;
 
-    public int maxRooms;
-    public GameObject closedRoomPrefab;
+    public int maxRooms; // The maximum number of rooms
+    public GameObject closedRoomPrefab; // The closed room prefab
 
-    public List<GameObject> rooms;
+    public List<GameObject> rooms; // List of all rooms that have been spawned
 
     [SerializeField] float waitTime;
     bool bossSpawned = false;
@@ -25,14 +25,19 @@ public class RoomManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Generate a random home
         if(instantiateHome)
             RandomHomeRoom();
+        // Spawns a random home room
         Instantiate(home, transform.position, Quaternion.identity);
+
+        // Spawning a center spawn point so that a room cannot be spawned on the home room
         Instantiate(center, transform.position, Quaternion.identity);
     }
 
     private void Update()
     {
+        // spawn a boss in the last generated room after certain time and adjust the time
         if(waitTime <= float.Epsilon && !bossSpawned)
         {
             //print(rooms[rooms.Count - 1].transform.position);
@@ -45,6 +50,9 @@ public class RoomManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Selects a random room from the all the room prefabs
+    /// </summary>
     void RandomHomeRoom()
     {
         int randRoomType = Random.Range(0, 4);
